@@ -1,0 +1,93 @@
+{% from "bootstrap5/form.html" import render_form %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>El Principe Nightclub</title>
+    <link rel="icon" href="/static/images/title_logo.png" type="image/x-icon"/>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="/css/styles.css" rel="stylesheet">
+
+
+
+
+
+</head>
+
+<nav class="navbar navbar-expand-lg" style="background: black">
+            <div class="container">
+
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="/static/images/logo_small.png" style="margin: 0"/>
+
+{#                    El Principe Nightclub#}
+                </a>
+
+                <a href="{{ url_for('tickets') }}" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{url_for('home') }}">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="background-image: url('../static/images/login.jpg')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1 style="color: white" class="text-center">Register User</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+    <main class="mb-4">
+      <div class="container">
+        <div class="row">
+          <!-- Adding Flash message here for users trying to register twice -->
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  {% for message in messages %}
+                    <p class="flash">{{ message }}</p>
+                  {% endfor %}
+              {% endif %}
+          {% endwith %}
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <!--Rendering login form here-->
+            {{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+          </div>
+        </div>
+      </div>
+    </main>
