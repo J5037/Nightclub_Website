@@ -14,7 +14,6 @@ import os
 import datetime
 
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('API_KEY')
 Bootstrap5(app)
