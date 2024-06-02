@@ -9,12 +9,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import DataRequired
+from discord_webhook import DiscordWebhook, DiscordEmbed
 import os
 import datetime
-from discord_webhook import DiscordWebhook, DiscordEmbed
 
-MAIL_ADDRESS = os.environ.get("EMAIL_KEY")
-MAIL_APP_PW = os.environ.get("PASSWORD_KEY")
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('API_KEY')
