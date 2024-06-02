@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, abort
+from flask import Flask, render_template, url_for, redirect, flash, abort
 from flask_bootstrap import Bootstrap5
-from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user, login_required, ID_ATTRIBUTE
+from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
@@ -9,15 +9,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import DataRequired
-import smtplib
 import os
 import datetime
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 MAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 MAIL_APP_PW = os.environ.get("PASSWORD_KEY")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('API_KEY')
 Bootstrap5(app)
 
 # Configure Flask-Login
@@ -81,7 +81,7 @@ class ContactForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     phone = StringField('Phone', validators=[DataRequired()])
-    subject = SelectField('Subject', choices=[('bottle_service', 'VIP Bottle Service'), ('rental', 'Rentals'), ('other', 'Other')])
+    subject = SelectField('Subject', choices=[('Bottle Service', 'VIP Bottle Service'), ('Rental', 'Rentals'), ('other', 'Other')])
     message = TextAreaField('Message', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
@@ -104,6 +104,26 @@ class AddEventForm(FlaskForm):
     time = StringField('Time', validators=[DataRequired()])
     ticket = StringField('Ticket')
     submit = SubmitField('Add Event')
+
+
+# webhook
+def send_webhook(name, email, phone, subject, message):
+    webhook = DiscordWebhook(
+        url=os.environ.get('WEBHOOK'))
+    embed = DiscordEmbed(title="**Contact Info**", color='551A8B')
+    embed.set_author(name="Contact Form Response Received!",
+                     icon_url="https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/366123414_1412892982658354_99722523401580637_n.jpg?stp=dst-jpg_s320x320&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=102&_nc_ohc=SctjHjwqnxcQ7kNvgFqH-M9&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AYAmn-zDJDzNmYkzEV0riT8cqLBCrHCG5TzIYjO-qtzxIA&oe=6661CDDE&_nc_sid=8b3546")
+    embed.set_footer(text='Time Created')
+    embed.add_embed_field(name="Name", value=f"{name}")
+    embed.add_embed_field(name="Email", value=f"{email}", inline=True)
+    embed.add_embed_field(name="Phone", value=f"{phone}", inline=False)
+    embed.add_embed_field(name="Subject", value=f"{subject}", inline=False)
+    embed.add_embed_field(name="Message", value=f"{message}", inline=False)
+    embed.set_thumbnail(
+        url="https://t4.ftcdn.net/jpg/05/25/22/63/360_F_525226337_x7lLRcnU08vDLkijRwgcbaIs8zCfDktC.jpg")
+    embed.set_timestamp()
+    webhook.add_embed(embed)
+    webhook.execute()
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -136,17 +156,6 @@ def register():
     return render_template("register.html", form=form, current_user=current_user)
 
 
-def send_email(name, email, phone, subject, message):
-    msg = f'Subject: Contact form submission regarding: {subject}\n\nName: {name}\n\nEmail: {email}\n\nPhone: {phone}\n\nMessage: {message}'
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as connection:
-        # connection.set_debuglevel(10)
-        connection.login(user='houseofel310@gmail.com', password='yokqmdsswrtfwjlu')
-        connection.sendmail(from_addr='houseofel310@gmail.com', to_addrs='dev@mbemails.org',
-                            msg=msg)
-        connection.close()
-        print('Email sent!')
-
-
 @app.route('/', methods=["GET", "POST"])
 def home():
     year = datetime.datetime.now().year
@@ -154,16 +163,11 @@ def home():
     result = db.session.execute(db.select(Event))
     events = result.scalars().all()
     if form.validate_on_submit():
-        send_email(form.name.data, form.email.data, form.phone.data, form.subject.data, form.message.data)
+        send_webhook(form.name.data, form.email.data, form.phone.data, form.subject.data, form.message.data)
         flash('Your message has been sent.')
         return redirect(url_for('home') + '#section_5')
         # return render_template("index.html", msg_sent=True, form=form, all_events=events)
     return render_template('index.html', form=form, all_events=events, year=year)
-
-
-@app.route('/tickets')
-def tickets():
-    return render_template('ticket.html')
 
 
 @app.route('/login', methods=["GET", "POST"])
