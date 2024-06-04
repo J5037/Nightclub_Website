@@ -385,6 +385,7 @@ strong {
   color: var(--white-color);
   font-size: var(--h5-font-size);
   font-weight: var(--font-weight-bold);
+  margin-left: 30px
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -484,7 +485,7 @@ strong {
   position: relative;
   overflow: hidden;
   padding-top: 100px;
-  height: 100vh;
+  height: 100dvh;
   /*height: calc(100vh - 51px);*/
 }
 
@@ -925,6 +926,7 @@ strong {
   list-style: none;
   display: inline-block;
   vertical-align: top;
+  padding-right: 5px;
 }
 
 .social-icon-link {
