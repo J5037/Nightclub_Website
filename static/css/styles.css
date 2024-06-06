@@ -12,6 +12,7 @@
   --p-color:                      #717275;
   --border-color:                 #7fffd4;
   --link-hover-color:             #551A8B;
+  --bs-modal-bg:                  #383737;
 
   --body-font-family:             'Outfit', sans-serif;
 
@@ -120,6 +121,10 @@ a:hover {
 b,
 strong {
   font-weight: var(--font-weight-bold);
+}
+
+a img:hover {
+  box-shadow: 0 0 3px 3px rgba(85, 26, 139, 1);
 }
 
 .link-fx-1 {
@@ -837,6 +842,7 @@ strong {
 
 
 
+
 /*---------------------------------------
   CUSTOM FORM               
 -----------------------------------------*/
@@ -1079,5 +1085,30 @@ header.masthead {
   background-color: #6c757d;
   background-size: cover;
   background-attachment: scroll;
+}
+
+.modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--bs-modal-header-padding);
+    /*border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);*/
+    border-top-left-radius: var(--bs-modal-inner-border-radius);
+    border-top-right-radius: var(--bs-modal-inner-border-radius);
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: #383737;
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
 }
 
