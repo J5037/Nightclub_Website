@@ -97,6 +97,7 @@ class RegisterForm(FlaskForm):
 
 
 class AddEventForm(FlaskForm):
+    flyer = StringField('Flyer', validators=[DataRequired()])
     title = StringField('Event', validators=[DataRequired()])
     date = StringField('Date', validators=[DataRequired()])
     time = StringField('Time', validators=[DataRequired()])
@@ -205,11 +206,13 @@ def add_event():
         event_title = form.title.data
         event_date = form.date.data
         event_time = form.time.data
+        event_flyer = form.flyer.data
         if form.ticket.data:
             event_ticket = form.ticket.data
         else:
             event_ticket = None
         new_event = Event(
+            flyer=event_flyer,
             title=event_title,
             date=event_date,
             time=event_time,
@@ -226,12 +229,14 @@ def add_event():
 def edit_event(event_id):
     event = db.get_or_404(Event, event_id)
     edit_form = AddEventForm(
+        flyer=event.flyer,
         title=event.title,
         date=event.date,
         time=event.time,
         ticket=event.ticket,
     )
     if edit_form.validate_on_submit():
+        event.flyer = edit_form.flyer.data
         event.title = edit_form.title.data
         event.date = edit_form.date.data
         event.time = edit_form.time.data
