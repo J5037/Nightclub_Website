@@ -46,6 +46,7 @@ class Event(db.Model):
     date: Mapped[str] = mapped_column(String(250), nullable=False)
     time: Mapped[str] = mapped_column(String(250), nullable=False)
     ticket: Mapped[str] = mapped_column(String(250), nullable=True)
+    flyer: Mapped[str] = mapped_column(String(250), nullable=False)
     # img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
