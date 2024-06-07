@@ -182,14 +182,14 @@
                         {% for event in all_events %}
                             <tr>
                                 <th scope="row">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#flyerTooltip">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#flyerTooltip{{ event.title }}">
                                         <img src="{{ event.flyer }}" alt="image of {{ event.title }}" style="width: 80px;height: 125px;" >
                                     </a>
-                                    <div class="modal fade" id="flyerTooltip" tabindex="-1" aria-labelledby="flyerTooltipLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <div class="modal fade" id="flyerTooltip{{ event.title }}" tabindex="-1" aria-labelledby="flyerTooltipLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
 {#                                                <div class="modal-header">#}
-{#                                                    <h1 class="modal-title fs-5" id="flyerTooltipLabel">{{ event.title }}</h1>#}
+{#                                                    <h1 class="modal-title fs-5 text-center" id="flyerTooltipLabel">{{ event.title }}</h1>#}
 {#                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
 {#                                                </div>#}
                                                 <div class="modal-body">
