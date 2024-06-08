@@ -200,9 +200,13 @@
                                     </div>
 
                                 </th>
-                                <td>{{ event.title }}</td>
-                                <td>{{ event.date }}</td>
-                                <td>{{ event.time}}</td>
+                                {% if 'karaoke' in event.title or 'Karaoke' in event.title %}
+                                <td><i class="custom-icon bi-mic-fill me-2"></i>{{ event.title }}</td>
+                                {% else %}
+                                <td><i class="custom-icon bi-music-note-beamed me-2"></i>{{ event.title }}</td>
+                                {% endif %}
+                                <td><i class="custom-icon bi-calendar-event me-2"></i>{{ event.date }}</td>
+                                <td><i class="custom-icon bi-clock-fill me-2"></i>{{ event.time}}</td>
                                     {% if event.ticket != None %}
                                         <td><a class="custom-btn smoothscroll" href="{{ event.ticket }}">Buy Ticket</a></td>
                                     {% else %}
