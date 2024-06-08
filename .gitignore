@@ -171,3 +171,4 @@ dmypy.json
 cython_debug/
 
 /instance/
+/ticket.html
