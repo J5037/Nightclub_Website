@@ -63,7 +63,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Past Events</a>
+                            <a class="nav-link click-scroll" href="#section_3">Gallery</a>
                         </li>
 
                         <li class="nav-item">
@@ -73,6 +73,9 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Contact</a>
                         </li>
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link click-scroll" href={{ url_for('gallery') }}>Gallery</a>#}
+{#                        </li>#}
                     </ul>
                     {% if current_user.is_active == True %}
                     <a href="{{ url_for('logout') }}" class="custom-btn smoothscroll">Logout</a>
@@ -182,7 +185,7 @@
                         {% for event in all_events %}
                             <tr>
                                 <th scope="row">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#flyerTooltip{{ event.title | replace(' ', '') }}">
+                                    <a href="#" id="flyer" data-bs-toggle="modal" data-bs-target="#flyerTooltip{{ event.title | replace(' ', '') }}">
                                         <img src="{{ event.flyer }}" alt="image of {{ event.title }}" style="width: 80px;height: 125px;" >
                                     </a>
                                     <div class="modal fade" id="flyerTooltip{{ event.title | replace(' ', '') }}" tabindex="-1" aria-labelledby="flyerTooltipLabel" aria-hidden="true">
@@ -260,112 +263,464 @@
                 <div class="row justify-content-center">
 
                     <div class="col-12 text-center">
-                        <h2 class="section-h2 mb-4 pb-5" style="color: white">Past Events</h2>
+                        <h2 class="section-h2 mb-1 pb-1" style="color: white">Gallery</h2>
                     </div>
 
-                    <div class="col-lg-6 col-12">
-                        <div class="artists-thumb">
-                            <div class="artists-image-wrap">
-                                <video autoplay="autoplay" loop="" muted="" class="custom-video-about artists-image img-fluid" poster="">
-                                    <source src="https://principe.b-cdn.net/Snapinsta.app_video_A947D97416CD94930E759BB742417F8B_video_dashinit-00.00.00.000-00.00.45.044.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
+{#                    <div class="col-lg-6 col-12">#}
+{#                        <div class="artists-thumb">#}
+{#                            <div class="artists-image-wrap">#}
+{#                                <video autoplay="autoplay" loop="" muted="" class="custom-video-about artists-image img-fluid" poster="">#}
+{#                                    <source src="https://principe.b-cdn.net/Snapinsta.app_video_A947D97416CD94930E759BB742417F8B_video_dashinit-00.00.00.000-00.00.45.044.mp4" type="video/mp4">#}
+{#                                    Your browser does not support the video tag.#}
+{#                                </video>#}
 {#                                <img src="/static/images/artists/joecalih-UmTZqmMvQcw-unsplash.jpg"#}
 {#                                    class="artists-image img-fluid">#}
-                            </div>
-
-{#                            <div class="artists-hover">#}
-{#                                <p>#}
-{#                                    <strong>Event:</strong>#}
-{#                                    Madona#}
-{#                                </p>#}
-{##}
-{#                                <p>#}
-{#                                    <strong>Date:</strong>#}
-{#                                    August 16, 1958#}
-{#                                </p>#}
-{##}
-{#                                <p>#}
-{#                                    <strong>Music:</strong>#}
-{#                                    Pop, R&amp;B#}
-{#                                </p>#}
-{##}
-{#                                <hr>#}
-{##}
-{#                                <p class="mb-0">#}
-{#                                    <strong>Youtube Channel:</strong>#}
-{#                                    <a href="#">Madona Official</a>#}
-{#                                </p>#}
 {#                            </div>#}
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-12">
-                        <div class="artists-thumb">
-                            <div class="artists-image-wrap">
-                                <video autoplay="autoplay" loop="" muted="" class="custom-video-about artists-image img-fluid" poster="">
-                                    <source src="https://principe.b-cdn.net/Amanda-Perez.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-
-{#                            <div class="artists-hover">#}
-{#                                <p>#}
-{#                                    <strong>Name:</strong>#}
-{#                                    Rihana#}
-{#                                </p>#}
 {##}
-{#                                <p>#}
-{#                                    <strong>Birthdate:</strong>#}
-{#                                    Feb 20, 1988#}
-{#                                </p>#}
+{#                        </div>#}
+{#                    </div>#}
 {##}
-{#                                <p>#}
-{#                                    <strong>Music:</strong>#}
-{#                                    Country#}
-{#                                </p>#}
-{##}
-{#                                <hr>#}
-{##}
-{#                                <p class="mb-0">#}
-{#                                    <strong>Youtube Channel:</strong>#}
-{#                                    <a href="#">Rihana Official</a>#}
-{#                                </p>#}
-{#                            </div>#}
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-12 custom-photo-events">
-
+{#                    <div class="col-lg-6 col-12">#}
 {#                        <div class="artists-thumb">#}
-                            <img src="/static/images/crowd.jpg"
-                                class="col-xl-12 col-12 img-fluid" >
-
-{#                            <div class="artists-hover">#}
-{#                                <p>#}
-{#                                    <strong>Name:</strong>#}
-{#                                    Bruno Bros#}
-{#                                </p>#}
-{##}
-{#                                <p>#}
-{#                                    <strong>Birthdate:</strong>#}
-{#                                    October 8, 1985#}
-{#                                </p>#}
-{##}
-{#                                <p>#}
-{#                                    <strong>Music:</strong>#}
-{#                                    Pop#}
-{#                                </p>#}
-{##}
-{#                                <hr>#}
-{##}
-{#                                <p class="mb-0">#}
-{#                                    <strong>Youtube Channel:</strong>#}
-{#                                    <a href="#">Bruno Official</a>#}
-{#                                </p>#}
+{#                            <div class="artists-image-wrap">#}
+{#                                <video autoplay="autoplay" loop="" muted="" class="custom-video-about artists-image img-fluid" poster="">#}
+{#                                    <source src="https://principe.b-cdn.net/Amanda-Perez.mp4" type="video/mp4">#}
+{#                                    Your browser does not support the video tag.#}
+{#                                </video>#}
 {#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-lg-12 col-12 custom-photo-events">#}
+{#                            <img src="/static/images/crowd.jpg"#}
+{#                                class="col-xl-12 col-12 img-fluid" >#}
+{#                    </div>#}
 
-                    </div>
+                    <div class="container mt-5">
+                        <div id="myBtnContainer" style="text-align: center">
+                {#          <button class="btn-gallery rounded" onclick="filterSelection('all')"> Show all</button>#}
+                          <button class="btn-gallery rounded selected" onclick="filterSelection('events')"> Past Events</button>
+                          <button class="btn-gallery rounded" onclick="filterSelection('videos')"> Videos</button>
+                          <button class="btn-gallery rounded" onclick="filterSelection('venue')"> Venue</button>
+                        </div>
+                        <!-- Portfolio Gallery Grid -->
+                        <div class="row">
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter events mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#event1">
+                                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="bar" style="width:100%">
+                                        <div class="bottomleft">Event 1 </div>
+                                    </a>
 
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="event1" tabindex="-1" aria-labelledby="event1Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p class="modal-title fs-5" id="event1Label" style="color: white">Event 1     -  SAT July 4, 2024</p>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <div id="carouselExampleFade" class="carousel slide">
+                                                        <div class="carousel-indicators">
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                                          </div>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/bar-blur.png" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd2.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter events mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#event2">
+                                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="bar" style="width:100%">
+                                        <div class="bottomleft">Event 2 </div>
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="event2" tabindex="-1" aria-labelledby="event2Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p class="modal-title fs-5" id="event1Label" style="color: white">Event 2     -  SAT July 4, 2024</p>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <div id="carouselExampleFade" class="carousel slide">
+                                                        <div class="carousel-indicators">
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                                          </div>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/bar-blur.png" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd2.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter events mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#event3">
+                                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="bar" style="width:100%">
+                                        <div class="bottomleft">Event 3 </div>
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="event1" tabindex="-1" aria-labelledby="event3Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p class="modal-title fs-5" id="event3Label" style="color: white">Event 3     -  SAT July 4, 2024</p>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <div id="carouselExampleFade" class="carousel slide">
+                                                        <div class="carousel-indicators">
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                                          </div>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/bar-blur.png" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd2.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter events mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#event4">
+                                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="bar" style="width:100%">
+                                        <div class="bottomleft">Event 3 </div>
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="event4" tabindex="-1" aria-labelledby="event4Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p class="modal-title fs-5" id="event3Label" style="color: white">Event 3     -  SAT July 4, 2024</p>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <div id="carouselExampleFade" class="carousel slide">
+                                                        <div class="carousel-indicators">
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                                          </div>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/bar-blur.png" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="/static/images/crowd2.jpg" class="d-block modal-img" alt="...">
+                                                            </div>
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="column col-lg-6 col-md-6 col-sm-12 filter videos mb-5">
+                                <div class="content">
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#videoModal1">
+                {#                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="Nature" style="width:100%">#}
+                                        <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/Amanda-Perez.mp4" class="artists-image" style="width:100%;"></video>
+                                    </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModal1Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/Amanda-Perez.mp4" class="artists-image" style="width:100%;height: 90dvh"></video>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column col-lg-6 col-md-6 col-sm-12 filter videos mb-5">
+                                <div class="content">
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#videoModal2">
+                {#                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="Nature" style="width:100%">#}
+                                        <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/Snapinsta.app_video_A947D97416CD94930E759BB742417F8B_video_dashinit-00.00.00.000-00.00.45.044.mp4" class="artists-image" style="width:100%;"></video>
+                                    </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModal2Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/Snapinsta.app_video_A947D97416CD94930E759BB742417F8B_video_dashinit-00.00.00.000-00.00.45.044.mp4" class="artists-image" style="width:100%;height: 90dvh"></video>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column col-lg-6 col-md-6 col-sm-12 filter videos mb-5">
+                                <div class="content">
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#videoModal3">
+                {#                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="Nature" style="width:100%">#}
+                                        <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/6-22-23.mov" class="artists-image" style="width:100%;"></video>
+                                    </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="videoModal3" tabindex="-1" aria-labelledby="videoModal3Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/6-22-23.mov" class="artists-image" style="width:100%;height: 90dvh"></video>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column col-lg-6 col-md-6 col-sm-12 filter videos mb-5">
+                                <div class="content">
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#videoModal4">
+                {#                        <img src="https://principe.b-cdn.net/event1/SAL02915.jpg" alt="Nature" style="width:100%">#}
+                                        <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/Video%20Apr%2013%202023%2C%207%2024%2005%20PM.mov" class="artists-image" style="width:100%;"></video>
+                                    </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="videoModal4" tabindex="-1" aria-labelledby="videoModal4Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <video autoplay="autoplay" loop="" muted="" src="https://principe.b-cdn.net/Video%20Apr%2013%202023%2C%207%2024%2005%20PM.mov" class="artists-image" style="width:100%;height: 90dvh"></video>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter venue mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#venueModal1">
+                                        <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="venueModal1" tabindex="-1" aria-labelledby="venueModal1Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter venue mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#venueModal2">
+                                        <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="venueModal2" tabindex="-1" aria-labelledby="venueModal2Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter venue mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#venueModal3">
+                                        <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="venueModal3" tabindex="-1" aria-labelledby="venueModal3Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="column col-lg-3 col-md-6 col-sm-12 filter venue mb-5">
+                                <div class="content">
+                                    <!-- anchor trigger modal -->
+                                    <a href="#" id="gallery-image" data-bs-toggle="modal" data-bs-target="#venueModal4">
+                                        <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="venueModal4" tabindex="-1" aria-labelledby="venueModal4Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                {#                                    <p class="modal-title fs-5" id="exampleModalLabel" style="color: white">Venue - Bar</p>#}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <!-- Carousel -->
+                                                    <img src="/static/images/bar.jpg" alt="bar" style="width:100%">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+
+            <!-- END GRID -->
                 </div>
             </div>
         </section>
@@ -648,41 +1003,52 @@ Experience the ultimate in luxury and exclusivity as you step into our VIP secti
     <script src="/static/js/jquery.sticky.js"></script>
     <script src="/static/js/click-scroll.js"></script>
     <script src="/static/js/custom.js"></script>
-<script>
-            function showImage() {
-                var imageContainer =
-                    document.createElement("div");
-                imageContainer.className =
-                    "image-container";
+    <script>
+filterSelection("events")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
 
-                var image =
-                    document.createElement("img");
-                image.src =
-"https://media.geeksforgeeks.org/wp-content/uploads/20210915115837/gfg3.png";
-                var closeButton =
-                    document.createElement(
-                        "button"
-                    );
-                closeButton.textContent = "Close";
-                closeButton.className =
-                    "close-btn";
-                closeButton.onclick =
-                    function () {
-                        document.body.removeChild(
-                            imageContainer
-                        );
-                    };
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
 
-                imageContainer.appendChild(
-                    closeButton
-                );
-                imageContainer.appendChild(image);
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
 
-                document.body.appendChild(
-                    imageContainer
-                );
-            }
-        </script>
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn-gallery");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("selected");
+    current[0].className = current[0].className.replace(" selected", "");
+    this.className += " selected";
+  });
+}
+</script>
+
 
 </body>
 </html>

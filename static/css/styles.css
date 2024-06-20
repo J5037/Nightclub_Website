@@ -123,7 +123,7 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
-a img:hover {
+#flyer img:hover {
   box-shadow: 0 0 3px 3px rgba(85, 26, 139, 1);
 }
 
@@ -1091,7 +1091,7 @@ header.masthead {
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     padding: var(--bs-modal-header-padding);
     /*border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);*/
     border-top-left-radius: var(--bs-modal-inner-border-radius);
@@ -1111,3 +1111,127 @@ header.masthead {
     border-radius: var(--bs-modal-border-radius);
     outline: 0;
 }
+
+.row {
+  margin: 4px -16px;
+}
+
+/* Add padding BETWEEN each column (if you want) */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  /*float: left;*/
+  /*width: 33.33%;*/
+  display: none; /* Hide columns by default */
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn-gallery {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: var(--bs-secondary);
+  cursor: pointer;
+  color: white;
+  margin-left: 10px
+}
+
+
+/* Add a grey background color on mouse-over */
+.btn-gallery:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Add a dark background color to the active button */
+.btn-gallery .active {
+  background-color: var(--primary-color);
+   color: white;
+}
+
+#gallery-image img {
+  --c: var(--primary-color); /* the border color */
+  --b: 7px;    /* the border thickness*/
+  --g: 5px;     /* the gap on hover */
+
+  padding: calc(var(--g) + var(--b));
+  --_g: #0000 25%,var(--c) 0;
+  background:
+    conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g))
+     var(--_i,200%) 0  /200% var(--_i,var(--b))  no-repeat,
+    conic-gradient(            at bottom var(--b) left  var(--b),var(--_g))
+     0   var(--_i,200%)/var(--_i,var(--b)) 200%  no-repeat;
+  transition: .1s, background-position .1s .1s;
+  cursor: pointer;
+}
+
+#gallery-image img:hover {
+  --_i: 100%;
+  transition: .2s, background-size .2s .2s;
+}
+
+.carousel-inner {
+  width: 100%;
+}
+
+.gallery-header {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  font-size: 18px;
+  z-index: 10;
+  width: 100%;
+}
+
+.modal-img {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-body {
+  height: 50%;
+  padding: 8px;
+}
+
+.selected {
+  color: white;
+  background-color: var(--primary-color);
+}
+

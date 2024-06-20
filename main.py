@@ -256,5 +256,10 @@ def delete_event(event_id):
     return redirect(url_for('home'))
 
 
+@app.route("/gallery", methods=["GET", "POST"])
+def gallery():
+    return render_template("gallery.html", current_user=current_user)
+
+
 if __name__ == '__main__':
     app.run(debug=False)
