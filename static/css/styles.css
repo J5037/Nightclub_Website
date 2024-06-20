@@ -1211,13 +1211,18 @@ header.masthead {
   font-size: 18px;
 }
 
+.content {
+  position: relative;
+}
+
 .bottomleft {
   position: absolute;
   bottom: 8px;
   left: 16px;
   font-size: 18px;
-  z-index: 10;
+  /*z-index: 10;*/
   width: 100%;
+  color: white;
 }
 
 .modal-img {
