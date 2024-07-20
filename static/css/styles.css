@@ -1220,6 +1220,18 @@ header.masthead {
   bottom: 8px;
   left: 16px;
   font-size: 18px;
+  font-weight: 800;
+  /*z-index: 10;*/
+  width: 100%;
+  color: white;
+}
+
+.bottomright {
+  position: absolute;
+  bottom: 8px;
+  left: 195px;
+  font-size: 18px;
+  font-weight: 600;
   /*z-index: 10;*/
   width: 100%;
   color: white;
